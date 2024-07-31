@@ -5,7 +5,7 @@ const Header = (props) => {
 const Part = (props) => {
   return (
     <p>
-      {props.parts} {props.exercises}
+      {props.parts}: {props.exercises}
     </p>
   );
 };
@@ -13,7 +13,7 @@ const Part = (props) => {
 const Content = (props) => {
   return (
     <>
-      <Part parts={props.parts[0].name} exerciss={props.parts[0].exercises} />
+      <Part parts={props.parts[0].name} exercises={props.parts[0].exercises} />
       <Part parts={props.parts[1].name} exercises={props.parts[1].exercises} />
       <Part parts={props.parts[2].name} exercises={props.parts[2].exercises} />
     </>
@@ -23,12 +23,11 @@ const Content = (props) => {
 const Total = (props) => {
   return (
     <p>
-      Number of exercises{" "}
-      <b>
-        {props.parts[0].exercises +
-          props.parts[1].exercises +
-          props.parts[2].exercises}
-      </b>
+      <strong>Number of exercises: </strong>
+      {props.parts.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.exercises,
+        0
+      )}
     </p>
   );
 };
