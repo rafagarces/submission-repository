@@ -19,13 +19,16 @@ const Statistics = (props) => {
   }
 
   const totalVotes = props.allClicks.length;
+
   // Calculates totalScore using the values assigned to each feedback type (Good = 1, Neutral = 0, Bad = -1).
   const totalScore = props.good * 1 + props.neutral * 0 + props.bad * -1;
+
   // Calculates averageScore by dividing totalScore by totalVotes. If there are no votes, the average is 0.
-  const averageScore = totalVotes === 0 ? 0 : totalScore / totalVotes;
+  const hasNoVotes = totalVotes === 0;
+  const averageScore = hasNoVotes ? 0 : totalScore / totalVotes;
+
   // Calculates averageGoodVotes by dividing the number of good votes by the total number of votes and multiplying by 100 to get the percentage. If there are no votes, the average is 0.
-  const averageGoodVotes =
-    totalVotes === 0 ? 0 : (props.good / totalVotes) * 100;
+  const averageGoodVotes = hasNoVotes ? 0 : (props.good / totalVotes) * 100;
 
   return (
     <table>
